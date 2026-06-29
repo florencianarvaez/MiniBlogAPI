@@ -1,0 +1,262 @@
+openapi: 3.0.0
+
+info:
+  title: MiniBlog API
+  version: 1.0.0
+  description: API REST para gestionar autores y publicaciones desarrollada con Node.js, Express y PostgreSQL.
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
+paths:
+  /authors:
+    get:
+      summary: Obtener todos los autores
+      description: Devuelve una lista con todos los autores registrados.
+      tags:
+        - Authors
+      responses:
+        "200":
+          description: Lista de autores obtenida correctamente
+
+    post:
+      summary: Crear un nuevo autor
+      description: Crea un autor en la base de datos.
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Florencia Narvaez
+              email: florencia@example.com
+              bio: Estudiante de desarrollo Full Stack
+      responses:
+        "201":
+          description: Autor creado correctamente
+        "400":
+          description: Datos inválidos
+
+  /authors/{id}:
+    get:
+      summary: Obtener un autor por ID
+      description: Devuelve la información de un autor específico.
+      tags:
+        - Authors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Autor encontrado
+        "404":
+          description: Autor no encontrado
+
+    put:
+      summary: Actualizar un autor
+      description: Actualiza los datos de un autor existente.
+      tags:
+        - Authors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Florencia Narvaez
+              email: florencia@example.com
+              bio: Estudiante de desarrollo Full Stack
+      responses:
+        "200":
+          description: Autor actualizado correctamente
+        "400":
+          description: Datos inválidos
+        "404":
+          description: Autor no encontrado
+
+    delete:
+      summary: Eliminar un autor
+      description: Elimina un autor por su ID.
+      tags:
+        - Authors
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Autor eliminado correctamente
+        "404":
+          description: Autor no encontrado
+            /posts:
+    get:
+      summary: Obtener todos los posts
+      description: Devuelve una lista con todos los posts registrados.
+      tags:
+        - Posts
+      responses:
+        "200":
+          description: Lista de posts obtenida correctamente
+
+    post:
+      summary: Crear un nuevo post
+      description: Crea un post en la base de datos.
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              title: Mi primer post
+              content: Estoy aprendiendo Express y PostgreSQL
+              author_id: 1
+              published: true
+      responses:
+        "201":
+          description: Post creado correctamente
+        "400":
+          description: Datos inválidos
+
+  /posts/{id}:
+    get:
+      summary: Obtener un post por ID
+      description: Devuelve la información de un post específico.
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Post encontrado
+        "404":
+          description: Post no encontrado
+
+    put:
+      summary: Actualizar un post
+      description: Actualiza los datos de un post existente.
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              title: Mi post actualizado
+              content: Ahora entiendo mejor Express y PostgreSQL
+              author_id: 1
+              published: true
+      responses:
+        "200":
+          description: Post actualizado correctamente
+        "400":
+          description: Datos inválidos
+        "404":
+          description: Post no encontrado
+
+    delete:
+      summary: Eliminar un post
+      description: Elimina un post por su ID.
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Post eliminado correctamente
+        "404":
+          description: Post no encontrado
+
+  /posts/author/{authorId}:
+    get:
+      summary: Obtener posts de un autor
+      description: Devuelve todos los posts pertenecientes a un autor.
+      tags:
+        - Posts
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          description: ID del autor
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Lista de posts del autor
+        "404":
+          description: Autor no encontrado
+          components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Ana García
+        email:
+          type: string
+          example: ana@example.com
+        bio:
+          type: string
+          example: Desarrolladora Full Stack
+        created_at:
+          type: string
+          format: date-time
+
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Introducción a Node.js
+        content:
+          type: string
+          example: Contenido de ejemplo...
+        author_id:
+          type: integer
+          example: 1
+        published:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          

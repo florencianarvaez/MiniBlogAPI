@@ -32,7 +32,7 @@ API REST desarrollada con Node.js, Express y PostgreSQL para gestionar autores y
 
 # Estructura del proyecto
 
-```
+```text
 MiniBlogAPI/
 │
 ├── docs/
@@ -46,9 +46,21 @@ MiniBlogAPI/
 │   ├── app.js
 │   └── server.js
 ├── tests/
+├── .env.example
+├── .gitignore
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
+
+---
+
+# Requisitos
+
+- Node.js
+- PostgreSQL
+- Git
+- npm
 
 ---
 
@@ -72,7 +84,7 @@ Instalar dependencias:
 npm install
 ```
 
-Crear un archivo `.env` con:
+Crear un archivo `.env` tomando como referencia el archivo `.env.example`:
 
 ```env
 DB_USER=...
@@ -127,6 +139,7 @@ npm test
 | DB_USER | Usuario |
 | DB_PASSWORD | Contraseña |
 | DB_NAME | Base de datos |
+| PORT | Puerto de la aplicación |
 
 ---
 
@@ -138,7 +151,22 @@ https://miniblogapi-production-022d.up.railway.app/api-docs
 
 ---
 
-# API desplegada
+# Deployment en Railway
+
+La aplicación se encuentra desplegada en Railway utilizando una base de datos PostgreSQL.
+
+Variables de entorno utilizadas:
+
+- DB_HOST
+- DB_PORT
+- DB_USER
+- DB_PASSWORD
+- DB_NAME
+- PORT
+
+La conexión entre la API y PostgreSQL se realiza mediante la **Internal URL** generada automáticamente por Railway y las variables de entorno configuradas en la plataforma.
+
+URL pública:
 
 https://miniblogapi-production-022d.up.railway.app/
 
@@ -162,12 +190,14 @@ https://miniblogapi-production-022d.up.railway.app/
 - PUT /posts/:id
 - DELETE /posts/:id
 
-
 ## Uso de Inteligencia Artificial
+
 El uso de la IA estuvo presente desde las primeras etapas del proyecto, colaborando en la planificación de la estructura de carpetas, la organización de los archivos y la definición del flujo de trabajo recomendado para construir una API REST. También fue utilizada para comprender el funcionamiento de Express, la creación de rutas, el manejo de solicitudes HTTP y la correcta separación de responsabilidades dentro del proyecto.
+
 A lo largo del desarrollo se utilizó la IA para explicar el funcionamiento de cada fragmento de código implementado, permitiendo comprender el propósito de cada función, middleware, consulta SQL y endpoint antes de incorporarlo al proyecto. En lugar de limitarse a proporcionar código, se solicitó una explicación detallada de cada paso para favorecer el aprendizaje y comprender el funcionamiento interno de la aplicación.
 
 También se utilizó para resolver errores que surgieron durante el desarrollo, como problemas relacionados con rutas de Express, manejo de parámetros, validaciones, respuestas HTTP, configuración de la conexión con PostgreSQL, utilización de Thunder Client para probar los endpoints y depuración de errores detectados durante las pruebas manuales.
+
 Durante la etapa final del proyecto también brindó asistencia en la configuración de Git y GitHub, la gestión de commits, el manejo del repositorio remoto, la resolución de conflictos relacionados con el archivo .gitignore y la eliminación del archivo .env del repositorio para mantener la seguridad de las credenciales.
 
 Finalmente, la inteligencia artificial fue utilizada para asistir en el despliegue completo del proyecto utilizando Railway, incluyendo la publicación de la API, la creación de una base de datos PostgreSQL en la nube, la configuración de las variables de entorno, la resolución de problemas de conexión entre la aplicación y la base de datos y la carga del esquema y los datos iniciales mediante los archivos schema.sql y seed.sql.
@@ -175,6 +205,7 @@ Finalmente, la inteligencia artificial fue utilizada para asistir en el desplieg
 En todos los casos, la inteligencia artificial fue utilizada como una herramienta de apoyo al aprendizaje y a la resolución de problemas. Las decisiones de implementación fueron verificadas durante el desarrollo, realizando pruebas manuales y automatizadas para comprobar el correcto funcionamiento de cada funcionalidad antes de continuar con las siguientes etapas del proyecto. El uso de esta herramienta permitió comprender mejor los conceptos trabajados durante el módulo, reforzar el aprendizaje y desarrollar el proyecto de manera más organizada y eficiente.
 
 ## Prompts utilizados
+
 Durante el desarrollo del proyecto se utilizaron distintos prompts para solicitar orientación técnica, resolver errores y comprender conceptos relacionados con el desarrollo backend. Algunos de los principales fueron:
 
 - "Explícame paso a paso cómo implementar un CRUD para las entidades authors y posts utilizando Express y PostgreSQL."
@@ -188,10 +219,10 @@ Durante el desarrollo del proyecto se utilizaron distintos prompts para solicita
 - "Explícame cómo resolver los problemas de configuración entre Railway y PostgreSQL durante el despliegue."
 
 Metodología de trabajo: durante el desarrollo se solicitó que las explicaciones fueran paso a paso, priorizando la comprensión del código antes que la copia de soluciones completas. El objetivo fue utilizar la inteligencia artificial como herramienta de aprendizaje y apoyo para la resolución de problemas, comprendiendo cada implementación antes de incorporarla al proyecto.
+
 ---
 
 # Autor
 
 **Florencia Narváez**
-
 
